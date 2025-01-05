@@ -1,11 +1,21 @@
 <script lang="ts">
   import { page } from '$app/stores';
 
-  export let user: { email: string } | null = null;
+  export let user: { email: string; role?: string } | null = null;
+
+  // Group navigation items for better organization
+  const protectedNavItems = [
+    { href: '/dashboard', label: 'Dashboard' },
+    { href: '/products', label: 'Products' },
+    { href: '/warehouses', label: 'Warehouses' },
+    { href: '/inventory', label: 'Inventory' },
+    { href: '/profile', label: 'Profile' },
+    { href: '/employees', label: 'Employees' }
+  ];
 </script>
 
 <nav class="bg-white shadow">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="max-w-7xl mx-a@uto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between h-16">
       <div class="flex">
         <div class="flex-shrink-0 flex items-center">
@@ -21,30 +31,16 @@
             Home
           </a>
           {#if user}
-            <a
-              href="/dashboard"
-              class="inline-flex items-center px-1 pt-1 {$page.url.pathname === '/dashboard'
-                ? 'border-b-2 border-indigo-500 text-gray-900'
-                : 'border-b-2 border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'}"
-            >
-              Dashboard
-            </a>
-            <a
-              href="/profile"
-              class="inline-flex items-center px-1 pt-1 {$page.url.pathname === '/profile'
-                ? 'border-b-2 border-indigo-500 text-gray-900'
-                : 'border-b-2 border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'}"
-            >
-              Profile
-            </a>
-            <a
-              href="/products"
-              class="inline-flex items-center px-1 pt-1 {$page.url.pathname === '/products'
-                ? 'border-b-2 border-indigo-500 text-gray-900'
-                : 'border-b-2 border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'}"
-            >
-              Products
-            </a>
+            {#each protectedNavItems as item}
+              <a
+                href={item.href}
+                class="inline-flex items-center px-1 pt-1 {$page.url.pathname === item.href
+                  ? 'border-b-2 border-indigo-500 text-gray-900'
+                  : 'border-b-2 border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'}"
+              >
+                {item.label}
+              </a>
+            {/each}
           {/if}
         </div>
       </div>
