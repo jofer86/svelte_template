@@ -18,22 +18,11 @@ model User {
   email          String    @unique
   hashedPassword String
   role           Role      @default(USER)
-  profile        Profile?
   products       Product[]
   sessions       Session[]
   passwordResets PasswordReset[]
   createdAt      DateTime  @default(now())
   updatedAt      DateTime  @updatedAt
-}
-
-model Profile {
-  id        String   @id @default(uuid())
-  userId    String   @unique
-  name      String?
-  avatar    String?
-  user      User     @relation(fields: [userId], references: [id])
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
 }
 
 model Session {
@@ -104,25 +93,4 @@ model Inventory {
 enum Role {
   USER
   ADMIN
-}
-
-enum EmployeeRole {
-  ADMIN
-  MANAGER
-  STAFF
-}
-
-model Employee {
-  id             String      @id @default(uuid())
-  firstName      String
-  lastName       String
-  email          String      @unique
-  phone          String?
-  role           EmployeeRole
-  hashedPassword String
-  createdAt      DateTime    @default(now())
-  updatedAt      DateTime    @updatedAt
-
-  @@index([email])
-  @@index([role])
 }

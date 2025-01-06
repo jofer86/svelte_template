@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { error, fail } from '@sveltejs/kit';
 import { prisma } from '$lib/server/db';
 import bcrypt from 'bcryptjs';

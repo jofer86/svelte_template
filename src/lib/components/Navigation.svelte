@@ -5,12 +5,15 @@
 
   // Group navigation items for better organization
   const protectedNavItems = [
-    { href: '/dashboard', label: 'Dashboard' },
     { href: '/products', label: 'Products' },
     { href: '/warehouses', label: 'Warehouses' },
-    { href: '/inventory', label: 'Inventory' },
-    { href: '/profile', label: 'Profile' },
-    { href: '/employees', label: 'Employees' }
+    { href: '/inventory', label: 'Inventory' }
+  ];
+
+  const links = [
+    { href: '/products', label: 'Products' },
+    { href: '/warehouses', label: 'Warehouses' },
+    { href: '/inventory', label: 'Inventory' }
   ];
 </script>
 
